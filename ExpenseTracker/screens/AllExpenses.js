@@ -1,10 +1,10 @@
-import { Text, View } from "react-native"
+import { DUMMY_EXPENSES } from "../dummyData/expenses"
+import ExpensesOutput from "../components/Expenses/ExpensesOutput"
 
 const AllExpenses = () => {
   return (
-    <View>
-      <Text>All Expenses</Text>
-    </View>
+    <ExpensesOutput expenses={DUMMY_EXPENSES} period="All"/>
+
   )
 }
 
