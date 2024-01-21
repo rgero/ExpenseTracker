@@ -1,5 +1,6 @@
 import AllExpenses from './screens/AllExpenses';
 import { GlobalStyles } from './constants/styles';
+import IconButton from './components/ui/IconButton';
 import {Ionicons} from '@expo/vector-icons';
 import ManageExpense from './screens/ManageExpense';
 import { NavigationContainer } from '@react-navigation/native';
@@ -22,7 +23,8 @@ const ExpensesOverview = () => {
         backgroundColor: GlobalStyles.colors.primary500,
         fontWeight: 'bold'
       },
-      tabBarActiveTintColor: GlobalStyles.colors.accent500
+      tabBarActiveTintColor: GlobalStyles.colors.accent500,
+      headerRight: ({tintColor}) => (<IconButton icon="add" size={24} color={tintColor} onPress={()=> {}} />) 
     }}>
       <BottomTabs.Screen 
         name="AllExpenses" 
