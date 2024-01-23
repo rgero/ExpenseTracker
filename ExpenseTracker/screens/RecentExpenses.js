@@ -13,7 +13,7 @@ const RecentExpenses = () => {
   })
 
   return (
-    <ExpensesOutput expenses={recentExpenses} period="Last Seven Days"/>
+    <ExpensesOutput expenses={recentExpenses} period="Last Seven Days" fallBackText="No Recent Expenses"/>
   )
 }
 
