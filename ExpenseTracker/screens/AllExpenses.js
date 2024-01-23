@@ -1,6 +1,5 @@
-import { DUMMY_EXPENSES } from "../dummyData/expenses"
 import { ExpensesContext } from "../store/ExpensesContext"
-import ExpensesOutput from "../components/Expenses/ExpensesOutput"
+import ExpensesOutput from "../components/expenses/ExpensesOutput"
 import { useContext } from "react"
 
 const AllExpenses = () => {
