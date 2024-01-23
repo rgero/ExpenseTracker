@@ -57,7 +57,14 @@ const ExpensesContextProvider = ({children}) => {
     })
   }
 
-  return <ExpensesContext.Provider>
+  const value = {
+    expenses: expensesState,
+    addExpense: addExpense,
+    deleteExpense: deleteExpense,
+    updateExpense: updateExpense
+  }
+
+  return <ExpensesContext.Provider value={value}>
     {children}
   </ExpensesContext.Provider>
 }
