@@ -9,12 +9,15 @@ export const ExpensesContext = createContext({
   expenses: [],
   addExpense: ({description, amount, date}) => {},
   deleteExpense: (id) => {},
-  updateExpense: (id, {description, amount, date})=> {}
+  getExpense: (id) => {},
+  updateExpense: (id, {description, amount, date})=> {},
 });
 
 const expensesReducer = (state, action) => {
   switch(action.type)
   {
+    case "GET":
+     return state.filter( (expense) => expense.id == action.payload.id)
     case "ADD":
       const id = uuidv4();
       return [{id: id, ...action.payload}, ...state];
@@ -59,11 +62,19 @@ const ExpensesContextProvider = ({children}) => {
     })
   }
 
+  const getExpense = (id) => {
+    dispatch({
+      type: "GET",
+      payload: id
+    })
+  }
+
   const value = {
     expenses: expensesState,
     addExpense: addExpense,
     deleteExpense: deleteExpense,
-    updateExpense: updateExpense
+    updateExpense: updateExpense,
+    getExpense: getExpense
   }
 
   return <ExpensesContext.Provider value={value}>
