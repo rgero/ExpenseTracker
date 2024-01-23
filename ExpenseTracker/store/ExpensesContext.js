@@ -1,3 +1,5 @@
+import 'react-native-get-random-values';
+
 import { createContext, useReducer } from "react";
 
 import { DUMMY_EXPENSES } from "../dummyData/expenses";
@@ -17,7 +19,7 @@ const expensesReducer = (state, action) => {
       const id = uuidv4();
       return [{id: id, ...action.payload}, ...state];
     case "UPDATE":
-      const targetIndex = state.findIndex( (element) => {element.id === action.payload.id });
+      const targetIndex = state.findIndex( (element) => { return element.id == action.payload.id });
       const targetExpense = state[targetIndex];
       const updatedItem = { ...targetExpense, ...action.payload.data};
       const updatedExpenses = [...state];
