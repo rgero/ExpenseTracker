@@ -1,4 +1,5 @@
 import { StyleSheet, Text, TextInput, View } from "react-native"
+import { getFormattedDate, parseDate } from "../../utils/date"
 import { useContext, useState } from "react"
 
 import Button from "../ui/Button"
@@ -7,18 +8,16 @@ import { GlobalStyles } from "../../constants/styles"
 import Input from "./Input"
 import { format } from "date-fns"
 
-const ExpenseForm = ({id, onCancel, onSubmit}) => {
-  const isEditing = !!id;
+const ExpenseForm = ({expense, onCancel, onSubmit}) => {
+  const isEditing = !!expense;
 
-  let expense;
-
-  const [date, setDate] = useState(expense?.date ? format(expense?.date, "yyyy-MM-dd") : format(new Date(), "yyyy-MM-dd"))
-  const [amount, setAmount] = useState(expense?.amount ? expense.amount : "")
+  const [date, setDate] = useState(expense?.date ? getFormattedDate(expense.date) : getFormattedDate(new Date()))
+  const [amount, setAmount] = useState(expense?.amount ? expense.amount.toString() : "")
   const [description, setDescription] = useState(expense?.description ? expense.description : "")
 
   const submitHandler = () => {
     let newData = {
-      date: new Date(date),
+      date: parseDate(date),
       amount: +amount,
       description: description
     }

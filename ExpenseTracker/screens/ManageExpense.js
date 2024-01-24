@@ -10,6 +10,7 @@ const ManageExpense = ({route, navigation}) => {
   const expenseID = route.params?.expenseId;
   const isEditing = !!expenseID;
   const expenseContext = useContext(ExpensesContext);
+  const targetExpense = expenseContext.expenses.find((expense) => expense.id === expenseID);
 
   const deleteHandler = () => {
     expenseContext.deleteExpense(expenseID);
@@ -39,7 +40,7 @@ const ManageExpense = ({route, navigation}) => {
   return (
     <View style={styles.container}>
       <View>
-        <ExpenseForm id={expenseID} onCancel={cancelHandler} onSubmit={confirmHandler}/>
+        <ExpenseForm expense={targetExpense} onCancel={cancelHandler} onSubmit={confirmHandler}/>
       </View>
       {isEditing && (
         <View style={styles.deleteContainer}>

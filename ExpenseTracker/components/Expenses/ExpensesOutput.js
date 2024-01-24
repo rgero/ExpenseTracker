@@ -9,7 +9,7 @@ const ExpensesOutput = ({period, expenses, fallBackText = "No Expenses Defined"}
   return (
     <View style={styles.container}>
       <ExpensesSummary expenses={expenses} period={period}/>
-      {expenses.length > 0 ? (<ExpensesList expenses={expenses}/>) : content }
+      {expenses?.length > 0 ? (<ExpensesList expenses={expenses}/>) : content }
     </View>
   )
 }
