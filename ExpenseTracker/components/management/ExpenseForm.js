@@ -1,12 +1,11 @@
-import { StyleSheet, Text, TextInput, View } from "react-native"
+import { Alert, StyleSheet, Text, View } from "react-native"
 import { getFormattedDate, parseDate } from "../../utils/date"
-import { useContext, useState } from "react"
 
 import Button from "../ui/Button"
-import { ExpensesContext } from "../../store/ExpensesContext"
 import { GlobalStyles } from "../../constants/styles"
 import Input from "./Input"
-import { format } from "date-fns"
+import { isDate } from "date-fns"
+import { useState } from "react"
 
 const ExpenseForm = ({expense, onCancel, onSubmit}) => {
   const isEditing = !!expense;
@@ -20,7 +19,18 @@ const ExpenseForm = ({expense, onCancel, onSubmit}) => {
       date: parseDate(date),
       amount: +amount,
       description: description
-    }
+    };
+
+    // Validation
+    const amountIsValid = !isNaN(newData.amount) && newData.amount > 0;
+    const dateIsValid = isDate(newData.date);
+    const descriptionIsValid = newData.description.trim().length > 0;
+    
+    if (!amountIsValid || !dateIsValid || !descriptionIsValid) {
+      Alert.alert("Invalid Input", "Please check your input values")
+      return
+    };
+
     onSubmit(newData);
   }
 
