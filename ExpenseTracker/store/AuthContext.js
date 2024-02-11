@@ -14,24 +14,23 @@ const AuthContextProvider = ({children}) => {
 
   useEffect(() => {
     const getToken = async () => {
-      const token = AsyncStorage.getItem('token')
-      if (token)
+      const token = await AsyncStorage.getItem('TOKEN')
+      if (token == null)
       {
         setAuthToken(token);
       }
     }
-    
     getToken();
   }, [])
 
   const authenticate = (token) => {
     setAuthToken(token);
-    AsyncStorage.setItem('token', token)
+    AsyncStorage.setItem('TOKEN', token)
   }
 
   const logout = () => {
     setAuthToken(null);
-    AsyncStorage.removeItem('token')
+    AsyncStorage.removeItem('TOKEN')
   }
 
   const value = {

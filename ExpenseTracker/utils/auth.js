@@ -2,7 +2,6 @@ import axios from "axios";
 
 const authenticate = async (mode, email, password) => {
   const targetURL = `https://identitytoolkit.googleapis.com/v1/accounts:${mode}?key=` + process.env.EXPO_PUBLIC_FIREBASE_KEY;
-
   const response = await axios.post(targetURL, {
     email: email,
     password: password,
@@ -14,7 +13,7 @@ const authenticate = async (mode, email, password) => {
 }
 
 export const createUser = async (email, password) => {
-  return await authenticate("signup", email, password)
+  return await authenticate("signUp", email, password)
 }
 
 

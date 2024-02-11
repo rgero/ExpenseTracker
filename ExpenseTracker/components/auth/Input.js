@@ -48,6 +48,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   inputInvalid: {
-    backgroundColor: GlobalStyles.colors.error100,
+    backgroundColor: GlobalStyles.colors.error500,
   },
 });
